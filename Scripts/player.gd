@@ -8,11 +8,9 @@ func _physics_process(delta):
 	velocity = Vector2(0, 0)
 
 
-	# Check if the "Click" action is pressed
 	if Input.is_action_pressed("Click"):
 		var direction = (mouse_position - position).normalized()
 		
-		# If the player is not close enough to the target, move
 		if position.distance_to(mouse_position) > 0.00005:
 			velocity = direction * speed
 		else:
