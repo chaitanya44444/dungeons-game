@@ -1,26 +1,38 @@
 extends CharacterBody2D
 
-const SPEED = 50.0
-var target = position
+@export var speed = 200
+var mouse_position = null
 
-func _input(event):
-	if event.is_action_pressed("Click"):
+func _physics_process(delta):
+	mouse_position = get_global_mouse_position()
+	velocity = Vector2(0, 0)
 
-		target = get_global_mouse_position()
-func _physics_process(delta: float) -> void:
-	var direction = (target - position).normalized()  # Ensure direction is normalized
-	var distance = position.distance_to(target)
-	if distance > 0.000000000000000000000000000007:
-		velocity = direction * SPEED
-	else:
-		velocity = Vector2.ZERO  # Stop moving when close to the target
+
+	# Check if the "Click" action is pressed
+	if Input.is_action_pressed("Click"):
+		var direction = (mouse_position - position).normalized()
+		
+		# If the player is not close enough to the target, move
+		if position.distance_to(mouse_position) > 0.00005:
+			velocity = direction * speed
+		else:
+			# Stop the player when close to the target
+			velocity = Vector2.ZERO
+	
+	move_and_slide()
+
+#func _physics_process(delta: float) -> void:
+#	var direction = (target - position).normalized()  # Ensure direction is normalized
+#	var distance = position.distance_to(target)
+#	if distance > 1:
+#		velocity = direction * SPEED
+#	else:
+#		velocity = Vector2.ZERO  # Stop moving when close to the target
 
 	# Call move_and_slide with no arguments
-	move_and_slide()
+#	move_and_slide()
 	
 	# Debugging: print the current velocity and direction
-	print("Velocity: ", velocity, " Direction: ", direction)
-
 	
 #	if not is_on_floor():
 #		velocity += get_gravity() * delta
