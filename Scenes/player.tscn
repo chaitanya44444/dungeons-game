@@ -1,20 +1,65 @@
-[gd_scene load_steps=5 format=3 uid="uid://7x8dd0vcp7k1"]
+[gd_scene load_steps=10 format=3 uid="uid://7x8dd0vcp7k1"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_h8blg"]
-[ext_resource type="Texture2D" uid="uid://bf5vq4vhtsyxy" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/elf_m_idle_anim_f0.png" id="2_srdvo"]
-[ext_resource type="Script" path="res://Scripts/elf_m_idle_anim_f_0.gd" id="3_bl4ox"]
+[ext_resource type="Texture2D" uid="uid://37awnexqgwm0" path="res://Assets/0x72_DungeonTilesetII_v1.7/0x72_DungeonTilesetII_v1.7.png" id="2_aklxc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_db4hm"]
+atlas = ExtResource("2_aklxc")
+region = Rect2(128, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5xry"]
+atlas = ExtResource("2_aklxc")
+region = Rect2(144, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01a2b"]
+atlas = ExtResource("2_aklxc")
+region = Rect2(160, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymm4e"]
+atlas = ExtResource("2_aklxc")
+region = Rect2(176, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfctx"]
+atlas = ExtResource("2_aklxc")
+region = Rect2(192, 32, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l8r0o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_db4hm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5xry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01a2b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymm4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfctx")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i45kr"]
 radius = 6.0
 height = 24.0
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 5
+collision_mask = 4
 script = ExtResource("1_h8blg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -7)
+sprite_frames = SubResource("SpriteFrames_l8r0o")
+animation = &"Idle"
+autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_i45kr")
-
-[node name="ElfMIdleAnimF0" type="Sprite2D" parent="."]
-position = Vector2(0, -4)
-texture = ExtResource("2_srdvo")
-script = ExtResource("3_bl4ox")

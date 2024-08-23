@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed = 200
+@export var speed = 60
 var mouse_position = null
 
 func _physics_process(delta):
