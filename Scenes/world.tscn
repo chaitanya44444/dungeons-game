@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b1a4tailc210k"]
+[gd_scene load_steps=14 format=3 uid="uid://b1a4tailc210k"]
 
 [ext_resource type="PackedScene" uid="uid://7x8dd0vcp7k1" path="res://Scenes/player.tscn" id="1_linfd"]
 [ext_resource type="Texture2D" uid="uid://dn17byjypvb3g" path="res://Assets/v1.1 dungeon crawler 16X16 pixel pack/full tilemap.png" id="2_o503q"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dt78c25joxl31" path="res://Assets/0x72_DungeonTilesetII_v1.7/atlas_floor-16x16.png" id="4_o2gvp"]
 [ext_resource type="Texture2D" uid="uid://bwyqwtofkq4jy" path="res://Assets/0x72_DungeonTilesetII_v1.7/atlas_walls_high-16x32.png" id="5_8frxt"]
 [ext_resource type="Texture2D" uid="uid://chu8vvjbfi3dy" path="res://Assets/0x72_DungeonTilesetII_v1.7/atlas_walls_low-16x16.png" id="6_rldw8"]
+[ext_resource type="PackedScene" uid="uid://d5o1wofylh4p" path="res://Friendlies/f_zombie.tscn" id="7_c5uhj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yc5oo"]
 texture = ExtResource("2_o503q")
@@ -1179,3 +1180,10 @@ layer_0/tile_data = PackedInt32Array(65537, 196608, 1, 131073, 196608, 1, 131074
 layer_1/name = "walls"
 layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array(-458759, 4, 3, -458758, 4, 3, -458757, 4, 3, -458756, 4, 3, -458755, 4, 3, -458754, 4, 3, -458753, 4, 3, -524288, 4, 3, -524287, 4, 3, -524286, 4, 3, -524285, 4, 3, -524284, 4, 3, -524283, 4, 3, -524282, 4, 3, -524281, 4, 3, -524280, 4, 3, -524279, 4, 3, -524278, 4, 3, -458760, 65540, 0, -393224, 4, 1, -327688, 4, 1, -262152, 4, 1, -196616, 4, 1, -131080, 4, 1, -65544, 4, 1, -8, 4, 1, 65528, 4, 1, 131064, 4, 1, 196600, 4, 1, 262136, 4, 1, 327672, 4, 1, 393208, 4, 1, 458744, 4, 1, 524280, 4, 1, 589816, 4, 1, 655352, 4, 1, 720888, 65540, 2, 720889, 131076, 2, 720890, 131076, 2, 720891, 131076, 2, 720892, 131076, 2, 720893, 131076, 2, 720894, 131076, 2, 720895, 131076, 2, 655360, 131076, 2, 655361, 131076, 2, 655362, 131076, 2, 655363, 131076, 2, 655364, 131076, 2, 655365, 131076, 2, 655366, 131076, 2, 655367, 131076, 2, 655368, 131076, 2, 655369, 131076, 2, 655370, 131076, 2, 655371, 196612, 2, 589835, 196612, 1, 524299, 196612, 1, 458763, 196612, 1, 393227, 196612, 1, 327691, 196612, 1, 262155, 196612, 1, 196619, 196612, 1, 131083, 196612, 1, 65547, 196612, 1, 11, 196612, 1, -65525, 196612, 1, -131061, 196612, 1, -196597, 196612, 1, -262133, 196612, 1, -327669, 196612, 1, -393205, 196612, 1, -458741, 196612, 1, -524277, 196612, 1)
+
+[node name="Friendly-Zombies" type="Node" parent="."]
+
+[node name="F-ZOMBIE" parent="Friendly-Zombies" instance=ExtResource("7_c5uhj")]
+position = Vector2(2, 26)
+
+[node name="F-ZOMBIE2" parent="Friendly-Zombies" instance=ExtResource("7_c5uhj")]
