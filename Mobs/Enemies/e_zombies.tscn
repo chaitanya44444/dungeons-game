@@ -1,0 +1,129 @@
+[gd_scene load_steps=12 format=3 uid="uid://dpng7338jcsrb"]
+
+[ext_resource type="Script" path="res://Mobs/Friendlies/f_zombie.gd" id="1_wc4gh"]
+[ext_resource type="Texture2D" uid="uid://37awnexqgwm0" path="res://Assets/0x72_DungeonTilesetII_v1.7/0x72_DungeonTilesetII_v1.7.png" id="2_hv7ly"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgo2o"]
+atlas = ExtResource("2_hv7ly")
+region = Rect2(432, 19, 16, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rua52"]
+atlas = ExtResource("2_hv7ly")
+region = Rect2(448, 19, 16, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8x1eg"]
+atlas = ExtResource("2_hv7ly")
+region = Rect2(464, 19, 16, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdi54"]
+atlas = ExtResource("2_hv7ly")
+region = Rect2(480, 19, 16, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ub3s6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgo2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rua52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8x1eg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdi54")
+}],
+"loop": true,
+"name": &"Spawn",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rasqa"]
+radius = 5.0
+height = 12.0
+
+[sub_resource type="Animation" id="Animation_ncevt"]
+resource_name = "Spawn"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("F-ZOMBIE:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.9375, 0.258224), Vector2(0.853, 0.853)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("F-ZOMBIE:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 7), Vector2(0, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_ce06l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("F-ZOMBIE:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.9375, 0.9375)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("F-ZOMBIE:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 7)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uy66a"]
+_data = {
+"RESET": SubResource("Animation_ce06l"),
+"Spawn": SubResource("Animation_ncevt")
+}
+
+[node name="E-ZOMBIE" type="CharacterBody2D"]
+z_index = 4
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_wc4gh")
+
+[node name="F-ZOMBIE" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(1, 0.0588235, 0.14902, 1)
+position = Vector2(0, 7)
+scale = Vector2(0.9375, 0.9375)
+sprite_frames = SubResource("SpriteFrames_ub3s6")
+animation = &"Spawn"
+autoplay = "Spawn"
+frame_progress = 0.503977
+
+[node name="F-ZOMBIE2" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_rasqa")
+
+[node name="AP" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uy66a")
+}
