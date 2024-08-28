@@ -1162,18 +1162,6 @@ sources/4 = SubResource("TileSetAtlasSource_6b66g")
 [node name="World" type="Node2D"]
 script = ExtResource("1_b05h7")
 
-[node name="Player" parent="." instance=ExtResource("1_linfd")]
-top_level = true
-position = Vector2(32, 22)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(-2, 1)
-zoom = Vector2(10, 10)
-limit_left = -128
-limit_top = -128
-limit_right = 191
-limit_bottom = 176
-
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_4e6sm")
 format = 2
@@ -1185,5 +1173,24 @@ layer_1/tile_data = PackedInt32Array(-458759, 4, 3, -458758, 4, 3, -458757, 4, 3
 
 [node name="Friendly-Zombies" type="Node" parent="."]
 
-[node name="E-ZOMBIE" parent="." instance=ExtResource("8_gcat0")]
-position = Vector2(106, -7)
+[node name="Player" parent="Friendly-Zombies" instance=ExtResource("1_linfd")]
+top_level = true
+position = Vector2(32, 22)
+
+[node name="Camera2D" type="Camera2D" parent="Friendly-Zombies/Player"]
+position = Vector2(-2, 1)
+zoom = Vector2(10, 10)
+limit_left = -128
+limit_top = -128
+limit_right = 191
+limit_bottom = 176
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.01
+autostart = true
+
+[node name="Hostile" type="Node" parent="."]
+
+[node name="E-ZOMBIE" parent="Hostile" instance=ExtResource("8_gcat0")]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
